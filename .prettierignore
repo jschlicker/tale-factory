@@ -1,0 +1,7 @@
+/dist
+/coverage
+.angular
+node_modules
+**/generated
+.vscode
+package-lock.json
