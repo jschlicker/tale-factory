@@ -4,4 +4,7 @@
 node_modules
 **/generated
 .vscode
+.idea
+.github
+.husky
 package-lock.json
