@@ -11,6 +11,11 @@
         "prepare": "husky install",
         "semantic-release": "semantic-release"
     },
+    "release": {
+        "branches": [
+            "main"
+        ]
+    },
     "private": true,
     "dependencies": {
         "@angular/animations": "^14.2.0",
