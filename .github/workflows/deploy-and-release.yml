@@ -26,11 +26,11 @@ jobs:
 
       - name: Starting deployment
         uses: chrnorm/deployment-action@releases/v1
-          id: deployment
-          with:
-            initial_status: pending
-            token: '${{ secrets.GITHUB_TOKEN }}'
-            environment: production
+        id: deployment
+        with:
+          initial_status: pending
+          token: '${{ secrets.GITHUB_TOKEN }}'
+          environment: production
 
       - name: Deploy to firebase
         uses: FirebaseExtended/action-hosting-deploy@v0
