@@ -1,0 +1,66 @@
+name: Deployment and release
+on: workflow_dispatch
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Clean up'
+        uses: AutoModality/action-clean@v1.1.0
+
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "lts/*"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build application
+        run: npm run build
+
+      - name: Starting deployment
+        uses: chrnorm/deployment-action@releases/v1
+          id: deployment
+          with:
+            initial_status: pending
+            token: '${{ secrets.GITHUB_TOKEN }}'
+            environment: production
+
+      - name: Deploy to firebase
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TALE_FACTORY }}'
+          channelId: live
+          projectId: tale-factory
+
+      - name: 'Update deployment status (success)'
+        if: success()
+        uses: chrnorm/deployment-status@releases/v1
+        with:
+          token: '${{ secrets.GITHUB_TOKEN }}'
+          state: 'success'
+          deployment_id: ${{ steps.deployment.outputs.deployment_id }}
+
+      - name: 'Update deployment status (failure)'
+        if: failure()
+        uses: chrnorm/deployment-status@releases/v1
+        with:
+          token: '${{ secrets.GITHUB_TOKEN }}'
+          state: 'failure'
+          deployment_id: ${{ steps.deployment.outputs.deployment_id }}
+
+      - name: Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npx semantic-release
+
+      - name: 'Clean up'
+        uses: AutoModality/action-clean@v1.1.0
