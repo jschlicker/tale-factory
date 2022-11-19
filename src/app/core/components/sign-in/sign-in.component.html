@@ -1,0 +1,68 @@
+<div class="surface-ground px-4 py-8 md:px-6 lg:px-8">
+    <div class="flex flex-wrap shadow-2">
+        <div class="w-full lg:w-6 px-0 py-4 lg:p-7 bg-blue-50">
+            <div class="flex justify-content-center">
+                <img src="../../../../assets/images/tale-factory-logo.svg" alt="Image" height="110" class="mb-7" />
+            </div>
+            <p-carousel *ngIf="CarouselContent" [value]="CarouselContent" [autoplayInterval]="4000" [circular]="true">
+                <ng-template let-CarouselContent pTemplate="item">
+                    <div class="text-center mb-4">
+                        <img src="{{ CarouselContent.img }}" alt="Image" class="mb-6 w-6" />
+                        <div class="mx-auto font-medium text-xl mb-4 text-blue-900">{{ CarouselContent.title }}</div>
+                        <p class="m-0 text-blue-700 line-height-3">{{ CarouselContent.description }}</p>
+                    </div>
+                </ng-template>
+            </p-carousel>
+        </div>
+        <div class="w-full lg:w-6 p-4 lg:p-7 surface-card">
+            <div class="flex align-items-center justify-content-between mb-7">
+                <span class="text-2xl font-medium text-900">Login to Tale-Factory</span>
+            </div>
+            <div class="flex justify-content-center">
+                <button
+                    pRipple
+                    class="w-5 font-medium border-1 surface-border surface-100 py-3 px-2 p-component hover:surface-200 active:surface-300 text-900 cursor-pointer transition-colors transition-duration-150 inline-flex align-items-center justify-content-center"
+                >
+                    <i class="pi pi-microsoft text-blue-400 mr-2"></i>
+                    <span>Microsoft</span>
+                </button>
+                <button
+                    pRipple
+                    class="ml-2 w-5 font-medium border-1 surface-border surface-100 py-3 px-2 p-component hover:surface-200 active:surface-300 text-900 cursor-pointer transition-colors transition-duration-150 inline-flex align-items-center justify-content-center"
+                >
+                    <i class="pi pi-google text-pink-400 mr-2"></i>
+                    <span>Google</span>
+                </button>
+            </div>
+            <p-divider align="center" styleClass="my-4">
+                <span class="text-600 font-normal text-sm">OR</span>
+            </p-divider>
+
+            <label for="email4" class="block text-900 font-bold mb-2">Email</label>
+            <input id="email4" type="text" pInputText class="w-full mb-3 p-3" placeholder="Email" />
+
+            <label for="password4" class="block text-900 font-bold mb-2">Password</label>
+            <input id="password4" type="password" pInputText class="w-full mb-3 p-3" placeholder="Password" />
+
+            <div class="flex align-items-center justify-content-between mb-6">
+                <div class="flex align-items-center">
+                    <p-checkbox id="rememberme4" [binary]="true" styleClass="mr-2"></p-checkbox>
+                    <label for="rememberme4">Remember me</label>
+                </div>
+                <a
+                    class="font-medium text-blue-500 hover:text-blue-700 cursor-pointer transition-colors transition-duration-150"
+                    >Forgot password?</a
+                >
+            </div>
+            <div class="flex justify-content-center">
+                <button pButton pRipple label="Sign In" class="p-button-rounded w-full py-3 font-medium m-2"></button
+                ><button
+                    pButton
+                    pRipple
+                    label="Sign Up"
+                    class="p-button-secondary p-button-rounded w-full py-3 font-medium m-2"
+                ></button>
+            </div>
+        </div>
+    </div>
+</div>
