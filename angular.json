@@ -88,6 +88,16 @@
                         "styles": ["src/styles.scss"],
                         "scripts": []
                     }
+                },
+                "deploy": {
+                    "builder": "@angular/fire:deploy",
+                    "options": {
+                        "prerender": false,
+                        "ssr": false,
+                        "browserTarget": "tale-factory:build:production",
+                        "firebaseProject": "tale-factory",
+                        "firebaseHostingSite": "tale-factory"
+                    }
                 }
             }
         }

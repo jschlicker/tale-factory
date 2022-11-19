@@ -39,3 +39,9 @@ Thumbs.db
 
 # Other
 .angular/
+/src/environments/
+
+# Firebase
+.firebase
+*-debug.log
+.runtimeconfig.json

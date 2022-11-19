@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "tale-factory"
+  },
+  "targets": {
+    "tale-factory": {
+      "hosting": {
+        "tale-factory": [
+          "tale-factory"
+        ]
+      }
+    }
   }
 }
